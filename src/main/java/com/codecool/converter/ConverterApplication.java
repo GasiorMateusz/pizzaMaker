@@ -8,11 +8,11 @@ public class ConverterApplication {
     public static void main(String[] args) {
         if (!Arrays.stream(args).findAny().isPresent()) {
             System.out.println("No input file defined");
-        } else if (args.length == 1 && utils.isValidPath(args[0])) {
+        } else if (args.length == 1 && utils.doesFileExist(args[0])) {
             ifArgValidDisplayCSV(args);
         } else if (args.length == 2) {
-            ifArgsValidExecuteConvertion(args);
-        } else{
+            ifArgsValidExecuteConversion(args);
+        } else {
             System.out.println("invalid parameters");
         }
 
@@ -23,24 +23,28 @@ public class ConverterApplication {
         File file = new File(args[0]);
     }
 
-    private static void ifArgsValidExecuteConvertion(String[] args) {
-        String format = null;
-        if(utils.isValidPath(args[0])){
-            File file = new File(args[0]);
-            format = args[1];
-        }else if(utils.isValidPath(args[1])){
-            File file = new File(args[1]);
-            format = args[0];
+    private static void ifArgsValidExecuteConversion(String[] args) {
+        FileFormat format = null;
+        File file;
+        if (utils.doesFileExist(args[0])) {
+            file = new File(args[0]);
+            format = utils.getIfIsFileFormat(args[1]);
+        } else if (utils.doesFileExist(args[1])) {
+            file = new File(args[1]);
+            format = utils.getIfIsFileFormat(args[0]);
         }
-        if (format != null && !format.isEmpty()) {
-            if (format.equalsIgnoreCase("xml")) {
+        if (format != null) {
+            if (format.equals(FileFormat.XML)) {
                 //it is xml fixme
-            } else if (format.equalsIgnoreCase("json")) {
+                System.out.println("convert to xml");
+            } else if (format.equals(FileFormat.JSON)) {
                 //it is json fixme
-            } else {
-                System.out.println("unsupported extension type");
+                System.out.println("convert to json");
             }
+        } else {
+            System.out.println("unsupported extension type : " + format);
         }
+
     }
 
 }
