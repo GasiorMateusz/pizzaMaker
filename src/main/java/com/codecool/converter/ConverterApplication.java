@@ -1,5 +1,10 @@
 package com.codecool.converter;
 
+import com.codecool.converter.formatter.CSVFormatter;
+import com.codecool.converter.formatter.JsonFormatter;
+import com.codecool.converter.formatter.SimpleCsvConverter;
+import com.codecool.converter.formatter.XmlFormatter;
+
 import java.io.File;
 import java.util.Arrays;
 
@@ -22,7 +27,7 @@ public class ConverterApplication {
         File file = new File(args[0]);
         System.out.println("convert to table");
         SimpleCsvConverter converter = new SimpleCsvConverter();
-        converter.setType(new CSVConverter());
+        converter.setType(new CSVFormatter());
         converter.converter(file);
     }
 
@@ -40,10 +45,10 @@ public class ConverterApplication {
 
         if (format != null && file != null) {
             if (format.equals(FileFormat.XML)) {
-                converter.setType(new XmlConverter());
+                converter.setType(new XmlFormatter());
                 System.out.println("convert to xml");
             } else if (format.equals(FileFormat.JSON)) {
-                converter.setType(new JsonConverter());
+                converter.setType(new JsonFormatter());
                 System.out.println("convert to json");
             }
             converter.converter(file);
