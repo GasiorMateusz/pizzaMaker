@@ -12,5 +12,7 @@ public enum FileFormat {
         this.format = format;
     }
 
-    public String getValue(){ return format;}
+    public String getValue() {
+        return format;
+    }
 }
