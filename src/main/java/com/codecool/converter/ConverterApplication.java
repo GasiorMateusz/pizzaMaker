@@ -9,7 +9,7 @@ public class ConverterApplication {
         if (!Arrays.stream(args).findAny().isPresent()) {
             System.out.println("No input file defined");
         } else if (args.length == 1 && utils.doesFileExist(args[0])) {
-            ifArgValidDisplayCSV(args);
+            ifArgValidDisplayCSVinTableFormat(args);
         } else if (args.length == 2) {
             ifArgsValidExecuteConversion(args);
         } else {
@@ -18,14 +18,17 @@ public class ConverterApplication {
 
     }
 
-    private static void ifArgValidDisplayCSV(String[] args) {
-        //path -> display file data in table fixme
+    private static void ifArgValidDisplayCSVinTableFormat(String[] args) {
         File file = new File(args[0]);
+        System.out.println("convert to table");
+        SimpleCsvConverter converter = new SimpleCsvConverter();
+        converter.setType(new CSVConverter());
+        converter.converter(file);
     }
 
     private static void ifArgsValidExecuteConversion(String[] args) {
         FileFormat format = null;
-        File file;
+        File file = null;
         if (utils.doesFileExist(args[0])) {
             file = new File(args[0]);
             format = utils.getIfIsFileFormat(args[1]);
@@ -33,16 +36,24 @@ public class ConverterApplication {
             file = new File(args[1]);
             format = utils.getIfIsFileFormat(args[0]);
         }
-        if (format != null) {
+        SimpleCsvConverter converter = new SimpleCsvConverter();
+
+        if (format != null && file != null) {
             if (format.equals(FileFormat.XML)) {
-                //it is xml fixme
+                converter.setType(new XmlConverter());
                 System.out.println("convert to xml");
             } else if (format.equals(FileFormat.JSON)) {
-                //it is json fixme
+                converter.setType(new JsonConverter());
                 System.out.println("convert to json");
             }
-        } else {
-            System.out.println("unsupported extension type : " + format);
+            converter.converter(file);
+        }
+
+        if (file == null) {
+            System.out.println("file doesn't exist");
+        } else if (format == null) {
+            System.out.println("unsupported extension type");
+
         }
 
     }
