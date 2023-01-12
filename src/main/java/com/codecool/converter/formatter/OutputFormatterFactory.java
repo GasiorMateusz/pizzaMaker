@@ -1,10 +1,8 @@
 package com.codecool.converter.formatter;
 
-import com.codecool.converter.FileFormat;
-
 public class OutputFormatterFactory {
 
-    OutputFormatter createByFormat(FileFormat outputFormat) {
+    public OutputFormatter createByFormat(FileFormat outputFormat) {
         if (outputFormat == null)
             return null;
         switch (outputFormat) {

@@ -1,5 +1,6 @@
 package com.codecool.converter;
 
+import com.codecool.converter.formatter.FileFormat;
 import com.codecool.converter.formatter.SimpleCsvConverter;
 
 import java.io.File;

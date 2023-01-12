@@ -1,6 +1,5 @@
 package com.codecool.converter.formatter;
 
-import com.codecool.converter.FileFormat;
 import com.codecool.converter.FileReader;
 
 import java.io.File;

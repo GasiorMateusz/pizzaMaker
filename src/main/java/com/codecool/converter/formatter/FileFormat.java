@@ -1,4 +1,4 @@
-package com.codecool.converter;
+package com.codecool.converter.formatter;
 
 public enum FileFormat {
 

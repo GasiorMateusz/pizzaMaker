@@ -1,5 +1,7 @@
 package com.codecool.converter;
 
+import com.codecool.converter.formatter.FileFormat;
+
 import java.io.File;
 import java.util.Arrays;
 
