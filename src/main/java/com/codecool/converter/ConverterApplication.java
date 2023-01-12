@@ -21,10 +21,9 @@ public class ConverterApplication {
     }
 
     private static void ifArgValidDisplayCSVinTableFormat(String[] args) {
-        File file = new File(args[0]);
         System.out.println("convert to table");
         SimpleCsvConverter converter = new SimpleCsvConverter();
-        converter.converter(file);
+        converter.converter(new File(args[0]));
     }
 
     private static void ifArgsValidExecuteConversion(String[] args) {

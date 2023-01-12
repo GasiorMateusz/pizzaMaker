@@ -12,12 +12,13 @@ public class SimpleCsvConverter {
     FileReader fileReader = new FileReader();
 
     public void converter(File file, FileFormat... outputFormat) {
-        if (outputFormat.length == 1) {
-            outputFormat[0] = FileFormat.TABLE;
+        if (outputFormat.length == 0) {
+            outputFormat = new FileFormat[]{FileFormat.TABLE};
         }
         this.outputFormatter = outputFormatterFactory.createByFormat(outputFormat[0]);
         System.out.println("I convert CSV to output format");
-        this.outputFormatter.executeConversion(fileReader.readData(file));
+        this.outputFormatter.printToConsole(fileReader.readData(file));
+        this.outputFormatter.outputFormatter();
     }
 
 }

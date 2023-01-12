@@ -1,12 +1,11 @@
 package com.codecool.converter.formatter;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public interface OutputFormatter {
 
-    void executeConversion(Scanner file);
-
-    void printToConsole();
+    void printToConsole(InputStream inputStream);
 
     void outputFormatter();
 
