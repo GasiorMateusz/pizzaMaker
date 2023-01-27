@@ -6,18 +6,11 @@ import java.io.File;
 
 public class SimpleCsvConverter {
 
-    OutputFormatter outputFormatter;
-    OutputFormatterFactory outputFormatterFactory = new OutputFormatterFactory();
     FileReader fileReader = new FileReader();
 
-    public void converter(File file, FileFormat... outputFormat) {
-        if (outputFormat.length == 0) {
-            outputFormat = new FileFormat[]{FileFormat.TABLE};
-        }
-        this.outputFormatter = outputFormatterFactory.createByFormat(outputFormat[0]);
-        System.out.println("I convert CSV to output format");
-        this.outputFormatter.printToConsole(fileReader.readData(file));
-        this.outputFormatter.outputFormatter();
+    public void converter(File file, OutputFormatter formatter) {
+        System.out.println("Conversion");
+        formatter.printToConsole(fileReader.readData(file));
     }
 
 }
